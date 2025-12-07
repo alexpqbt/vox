@@ -1,13 +1,9 @@
 package com.loremipsum.vox.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.loremipsum.vox.model.User;
-
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class RegisterController {
@@ -18,9 +14,8 @@ public class RegisterController {
   }
 
   @PostMapping("/register")
-  public String userRegister(@ModelAttribute User user, Model model) {
-    model.addAttribute("user", user);
-    return "home";
+  public void userRegister(@RequestBody String entity) {
+    System.out.println(entity);    
   }
-  
+
 }
