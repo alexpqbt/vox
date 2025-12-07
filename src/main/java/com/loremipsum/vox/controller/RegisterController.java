@@ -8,6 +8,6 @@ public class RegisterController {
 
   @GetMapping("/register")
   public String register() {
-    return "/html/register.html";
+    return "register.html";
   }
 }
