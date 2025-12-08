@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.loremipsum.vox.model.User;
 import com.loremipsum.vox.service.AuthService;
@@ -24,14 +25,14 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public String userLogin(@ModelAttribute User user, Model model) {
+  public String userLogin(@ModelAttribute User user, RedirectAttributes attrs) {
 
     if (!authService.checkAccount(user)) {
       return "login";
     }
 
-    model.addAttribute("user", user);
-    return "home";
+    attrs.addFlashAttribute("user", user);
+    return "redirect:/home";
   }
 
   @GetMapping("/register")
@@ -42,6 +43,6 @@ public class AuthController {
   @PostMapping("/register")
   public String userRegister(@ModelAttribute User user) {
     authService.registerUser(user);
-    return "login";
+    return "redirect:/login";
   }
 }
