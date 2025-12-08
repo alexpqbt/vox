@@ -2,18 +2,37 @@ package com.loremipsum.vox.service;
 
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.loremipsum.vox.model.User;
 import com.loremipsum.vox.repository.UserRepository;
 
 @Service
-public class AuthService {
+public class AuthService implements UserDetailsService {
   private UserRepository userRepo;
+  private PasswordEncoder passwordEncoder;
   
-  public AuthService(UserRepository userRepository) {
-    this.userRepo = userRepository;
+  public AuthService(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+    this.userRepo = userRepo;
+    this.passwordEncoder = passwordEncoder;
   }
+
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    System.out.println("Login attempt for: " + username);
+    User user = userRepo.findByUsername(username)
+                  .orElseThrow(() -> new UsernameNotFoundException("Username not found."));
+
+    return org.springframework.security.core.userdetails.User.builder()
+              .username(user.getUsername())
+              .password(user.getPassword())
+              .roles("USER")
+              .build();
+  } 
 
   public boolean checkAccount(User user) {
     String username = user.getUsername();
@@ -37,10 +56,7 @@ public class AuthService {
       throw new IllegalArgumentException("Username already exists");
     }
 
-    User newUser = new User();
-    newUser.setUsername(username);
-    newUser.setPassword(password);
-
-    return userRepo.save(newUser);
+    user.setPassword(passwordEncoder.encode(password));
+    return userRepo.save(user);
   }
 }

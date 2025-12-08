@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.loremipsum.vox.model.Post;
 
-
 @Controller
 public class HomeController {
 
@@ -15,4 +14,5 @@ public class HomeController {
     model.addAttribute("post", new Post());
     return "home";
   }
+
 }
