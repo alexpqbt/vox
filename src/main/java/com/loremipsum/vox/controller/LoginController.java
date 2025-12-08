@@ -28,7 +28,7 @@ public class LoginController {
   @PostMapping("/login")
   public String userLogin(@ModelAttribute User user, Model model) {
 
-    if (!authService.checkAccount(user.getUsername())) {
+    if (!authService.checkAccount(user)) {
       return "login";
     }
 
