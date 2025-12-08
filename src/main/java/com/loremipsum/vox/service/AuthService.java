@@ -26,4 +26,23 @@ public class AuthService {
               .map(fuser -> password.equals(fuser.getPassword()))
               .orElse(false);
   }
+
+  public boolean usernameExists(String username) {
+    return userRepository.existsByUsername(username);
+  }
+
+  public User registerUser(User user) {
+    String username = user.getUsername();
+    String password = user.getPassword();
+
+    if (usernameExists(username)) {
+      throw new IllegalArgumentException("Username already exists");
+    }
+
+    User newUser = new User();
+    newUser.setUsername(username);
+    newUser.setPassword(password);
+
+    return userRepository.save(newUser);
+  }
 }
