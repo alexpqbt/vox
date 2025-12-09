@@ -1,40 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vox: Home</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="js/bootstrap.bundle.min.js" defer></script>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-xl">
-    <div class="container-fluid">
-      <h3 class="navbar-brand">Vox: Freedom Wall</h3>
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            th:text="${user.username}"></a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a href="#" class="dropdown-item">Manage posts</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a href="#" class="dropdown-item">Sign Out</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div th:insert="~{fragments/navbar :: navbar}"></div>
   <div class="d-flex justify-content-center">
-    <div style="width: 600px">
-      <form class="d-flex flex-column" action="#" th:action="@{/post}" th:object="${post}" th:method="post">
-        <textarea th:field="*{body}" name="post" id="post" class="form-control" rows="7" placeholder="What's on your mind?"></textarea>
+    <div style="width: 38rem">
+      <form th:object="${post}" th:action="@{/api/add-post}" th:method="post" class="d-flex flex-column">
+        <input th:field="*{title}" name="title" id="title" class="form-control" type="text" placeholder="Title">
+        <textarea th:field="*{body}" name="body" id="body" class="form-control" rows="7" placeholder="What's on your mind?"></textarea>
         <button class="btn btn-primary ms-auto" type="submit">Post</button>
       </form>
+
+      <div th:replace="~{fragments/placeholder :: post}"></div>
+      <div th:replace="~{fragments/placeholder :: post}"></div>
+      <div th:replace="~{fragments/placeholder :: post}"></div>
+      <div th:replace="~{fragments/placeholder :: post}"></div>
     </div>
+
   </div>
 </body>
 

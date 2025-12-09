@@ -1,10 +1,10 @@
-package com.loremipsum.vox;
+package com.bilewater.freedom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VoxApplicationTests {
+class FreedomApplicationTests {
 
 	@Test
 	void contextLoads() {

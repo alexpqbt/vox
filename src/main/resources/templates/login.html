@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vox Login</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="js/bootstrap.bundle.min.js" defer></script>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
 </head>
 <body>
   <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">
-    <form th:action="@{/login}" method="post">
+    <form>
       <h3>Login</h3>
       <label for="username" class="form-label">Username</label>
       <input type="text" name="username" id="username" class="form-control">
@@ -17,12 +17,7 @@
       <label for="password" class="form-label">Password</label>
       <input type="password" name="password" id="password" class="form-control">
 
-            <!-- Required for POST with Spring Security -->
-      <input type="hidden"
-             th:name="${_csrf.parameterName}"
-             th:value="${_csrf.token}" />
-      
-      <button class="btn btn-primary" type="submit">Login</button>
+      <a href="/home" class="btn btn-primary" type="submit">Login</a>
       <a href="/register" class="btn btn-secondary">Register</a>
     </form>
   </div>
