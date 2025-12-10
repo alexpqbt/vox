@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.bilewater.freedom.dto.PostForm;
 import com.bilewater.freedom.entity.Post;
 import com.bilewater.freedom.repository.PostRepository;
 
@@ -25,7 +26,7 @@ public class HomeController {
   
   @GetMapping("/home")
   public String homePage(Model model) {
-    model.addAttribute("post", new Post());
+    model.addAttribute("postForm", new PostForm());
 
     List<Post> posts = postRepository.findAll();
     model.addAttribute("posts", posts);
