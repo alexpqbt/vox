@@ -75,7 +75,8 @@ public class Post {
 
   @Override
   public String toString() {
-    return "Post [id=" + id + ", title=" + title + ", body=" + body + ", createdAt=" + createdAt + "]";
+    return "Post [id=" + id + ", title=" + title + ", body=" + body + ", createdAt=" + createdAt + ", user=" + user
+        + "]";
   }
 
   
