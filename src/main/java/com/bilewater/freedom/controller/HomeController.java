@@ -33,4 +33,9 @@ public class HomeController {
     return "home";
   }
 
+  @GetMapping("/{user}/posts")
+  public String userPostsPage() {
+    return "profile";
+  }
+
 }
