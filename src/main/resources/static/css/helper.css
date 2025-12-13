@@ -1,0 +1,11 @@
+.card-body.editing .post-view {
+  display: none;
+}
+
+.card-body.editing .edit-form {
+  display: block;
+}
+
+.card-body .edit-form {
+  display: none;
+}

@@ -1,27 +1,45 @@
-const postTitle = document.querySelector(".card-title")
-const postText = document.querySelector(".card-text")
+let activeCard = null;
 
-const editBtn = document.querySelector("#edit-btn")
+const postList = document.querySelector("#postList");
 
-const editForm = document.querySelector("#edit-form")
-const editTitle = document.querySelector("#edit-title")
-const editBody = document.querySelector("#edit-body")
+postList.addEventListener("click", (e) => {
+  const btn = e.target.closest(".edit-btn");
+  if (!btn) return;
 
-editBtn.addEventListener("click", () => {
-  const editMode = editForm.classList.contains("d-none") 
+  const card = btn.closest(".card-body");
 
-  if (editMode) {
-    editTitle.value = postTitle.textContent
-    editBody.textContent = postText.textContent
-
-    postTitle.classList.add("d-none")
-    postText.classList.add("d-none")
-    editForm.classList.remove("d-none")
-
-    editBtn.innerHTML = "<i class='bi bi-check-lg'></i>"
-    editBtn.classList.remove("btn-primary")
-    editBtn.classList.add("btn-success")
-  } else {
-    editForm.submit()
+  if (card === activeCard) {
+    card.querySelector(".edit-form").submit();
+    activeCard = null;
+    card.classList.remove("editing");
+    resetButton(btn);
+    return;
   }
-})
+
+  if (activeCard) {
+    activeCard.classList.remove("editing");
+    resetButton(activeCard.querySelector(".edit-btn"));
+  }
+
+  enterEditMode(card);
+  activeCard = card;
+});
+
+function enterEditMode(card) {
+  const title = card.querySelector(".card-title");
+  const body  = card.querySelector(".card-text");
+
+  card.querySelector(".edit-title").value = title.textContent;
+  card.querySelector(".edit-body").value  = body.textContent;
+
+  card.classList.add("editing");
+
+  const btn = card.querySelector(".edit-btn");
+  btn.innerHTML = "<i class='bi bi-check-lg'></i>";
+  btn.classList.replace("btn-primary", "btn-success");
+}
+
+function resetButton(btn) {
+  btn.innerHTML = "<i class='bi bi-pencil-fill'></i>";
+  btn.classList.replace("btn-success", "btn-primary");
+}
