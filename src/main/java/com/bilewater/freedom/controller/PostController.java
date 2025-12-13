@@ -3,6 +3,7 @@ package com.bilewater.freedom.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,11 @@ public class PostController {
 
   public PostController(PostRepository postRepository) {
     this.postRepository = postRepository;
+  }
+
+  @GetMapping("/{user}/posts")
+  public String userPostsPage() {
+    return "profile";
   }
 
   @PostMapping("/add-post")
