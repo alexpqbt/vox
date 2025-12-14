@@ -25,10 +25,20 @@ Vox: Freedom is a simple Spring Boot application that allows users to create pos
 
 ### Installation
 
+#### On Linux/MacOS
+
 ```bash
 git clone <repository-url>
 cd vox
 ./mvnw spring-boot:run
+```
+
+#### On Windows (PowerShell or Command Prompt)
+
+```powershell
+git clone <repository-url>
+cd vox
+mvnw.cmd spring-boot:run
 ```
 
 The application will start on the default port `8080` unless otherwise configured.
