@@ -24,7 +24,9 @@
       <div class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
 
       <button class="btn btn-primary" type="submit">Register</button>
-      <button class="btn btn-secondary" type="reset">Clear Fields</button>
+
+      <a href="/register" class="btn btn-secondary">Clear Fields</a>
+      <a href="/login" class="btn btn-dark">Go Back</a>
     </form>
   </div>
 </body>
