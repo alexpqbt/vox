@@ -1,19 +1,47 @@
 # Vox: Freedom
 
-Vox: Freedom is a simple Spring Boot application that allows users to create posts and enables other logged-in users to read them. The app includes user authentication, CRUD functionality, and transactional operations involving multiple tables.
+**Vox: Freedom** is a lightweight Spring Boot application that allows users to create posts and view posts by others. The app features user authentication, CRUD operations for posts, and transactional operations involving multiple tables.
+
+---
+
+## Table of Contents
+
+* [Features](#features)
+* [Technologies](#technologies)
+* [Getting Started](#getting-started)
+
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+
+    * [Linux / MacOS](#linux--macos)
+    * [Windows](#windows)
+  * [Database Setup](#database-setup)
+
+    * [Linux (Ubuntu/Debian)](#linux-ubuntudebian)
+    * [Windows](#windows-1)
+* [Configuration](#configuration)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [License](#license)
+
+---
 
 ## Features
 
 * User Authentication & Authorization
-* CRUD functionality for posts
+* CRUD operations for posts (Create, Read, Update, Delete)
 * At least one transaction spanning multiple tables
+
+---
 
 ## Technologies
 
-* Java 21
-* Spring Boot 4.0.0
-* MariaDB
-* Maven
+* **Java 21**
+* **Spring Boot 4.0.0**
+* **MariaDB**
+* **Maven**
+
+---
 
 ## Getting Started
 
@@ -21,11 +49,13 @@ Vox: Freedom is a simple Spring Boot application that allows users to create pos
 
 * Java 21 installed
 * Maven installed
-* MariaDB database
+* MariaDB database installed
+
+---
 
 ### Installation
 
-#### On Linux/MacOS
+#### Linux / MacOS
 
 ```bash
 git clone <repository-url>
@@ -33,7 +63,7 @@ cd vox
 ./mvnw spring-boot:run
 ```
 
-#### On Windows (PowerShell or Command Prompt)
+#### Windows (PowerShell or Command Prompt)
 
 ```powershell
 git clone <repository-url>
@@ -41,25 +71,27 @@ cd vox
 mvnw.cmd spring-boot:run
 ```
 
+---
+
 ### Database Setup
 
-#### On Linux (Ubuntu/Debian)
+#### Linux (Ubuntu/Debian)
 
-1. **Install MariaDB**:
+1. **Install MariaDB**
 
 ```bash
 sudo apt update
 sudo apt install mariadb-server mariadb-client -y
 ```
 
-2. **Start and enable MariaDB service**:
+2. **Start and enable MariaDB service**
 
 ```bash
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
 
-3. **Secure MariaDB installation**:
+3. **Secure the installation**
 
 ```bash
 sudo mysql_secure_installation
@@ -67,7 +99,7 @@ sudo mysql_secure_installation
 
 Follow the prompts to set a root password and remove anonymous users.
 
-4. **Create the database and user**:
+4. **Create the database and user**
 
 ```bash
 sudo mariadb -u root -p
@@ -83,19 +115,17 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-#### On Windows
+#### Windows
 
-1. **Download MariaDB**:
-   Go to the [MariaDB official downloads page](https://mariadb.org/download/) and download the Windows installer.
+1. **Download and install MariaDB**
+   [MariaDB Official Downloads](https://mariadb.org/download/)
 
-2. **Install MariaDB**:
-   Run the installer and follow the steps. Set a root password when prompted.
+2. **Start MariaDB**
+   Open the **Services** app, locate `MariaDB`, and ensure it is running.
 
-3. **Start MariaDB**:
-   Open the **Services** app, locate `MariaDB`, and make sure it is running. Alternatively, use `mariadb.exe` from the installation folder.
+3. **Create the database and user**
 
-4. **Create the database and user**:
-   Open the **MariaDB Command Line Client** (or `cmd`) and enter:
+Open **MariaDB Command Line Client** or `cmd`:
 
 ```sql
 CREATE DATABASE freedomwall;
@@ -105,13 +135,13 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-After this, update your `application.properties` with the username, password, and database name.
+4. **Update application properties** with your database credentials.
 
-The application will start on `localhost:8080` unless otherwise configured.
+---
 
 ## Configuration
 
-The application uses `application.properties` (or `application.yml`) to configure database and other settings. At minimum, you will need to set:
+Update `application.properties` or `application.yml` with your database and app settings:
 
 ```properties
 spring.datasource.url=jdbc:mariadb://localhost:3306/freedomwall
@@ -121,17 +151,20 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-Other configuration options, such as server port or security settings, can also be customized in the same file.
+You can also customize other settings like server port or security configurations in the same file.
+
+---
 
 ## Usage
 
-Once running, users can:
+1. Visit the application at [http://localhost:8080](http://localhost:8080)
+2. Register and log in
+3. Create posts
+4. Browse posts created by other users
 
-1. Register an account and log in.
-2. Create posts.
-3. Read posts from other users.
+> All interactions are through the web interface; no public API endpoints are exposed.
 
-Since this is an internal app, no public API endpoints are exposed. All interactions are through the web interface.
+---
 
 ## Contributing
 
@@ -140,6 +173,8 @@ Since this is an internal app, no public API endpoints are exposed. All interact
 3. Commit your changes
 4. Submit a pull request
 
+---
+
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the **MIT License**.
