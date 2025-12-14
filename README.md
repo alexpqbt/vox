@@ -27,7 +27,7 @@ Vox: Freedom is a simple Spring Boot application that allows users to create pos
 
 ```bash
 git clone <repository-url>
-cd freedom
+cd vox
 ./mvnw spring-boot:run
 ```
 
