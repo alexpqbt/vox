@@ -3,7 +3,6 @@
 [![Java](https://img.shields.io/badge/Java-21-blue?logo=java)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.0.0-green?logo=spring)](https://spring.io/projects/spring-boot)
 [![MariaDB](https://img.shields.io/badge/MariaDB-10.11-blue?logo=mariadb)](https://mariadb.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 **Vox: Freedom** is a lightweight Spring Boot application for creating and viewing posts with user authentication, CRUD operations, and transactional support across multiple tables.
 
