@@ -1,6 +1,40 @@
 # Vox: Freedom
 
-**Vox: Freedom** is a lightweight Spring Boot application that allows users to create posts and view posts by others. The app features user authentication, CRUD operations for posts, and transactional operations involving multiple tables.
+[![Java](https://img.shields.io/badge/Java-21-blue?logo=java)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.0.0-green?logo=spring)](https://spring.io/projects/spring-boot)
+[![MariaDB](https://img.shields.io/badge/MariaDB-10.11-blue?logo=mariadb)](https://mariadb.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+
+**Vox: Freedom** is a lightweight Spring Boot application for creating and viewing posts with user authentication, CRUD operations, and transactional support across multiple tables.
+
+---
+
+## Quick Start
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd vox
+```
+
+2. Configure your database credentials in `application.properties` (see [Configuration](#configuration))
+
+3. Run the application:
+
+* **Linux / MacOS**:
+
+```bash
+./mvnw spring-boot:run
+```
+
+* **Windows (PowerShell / Command Prompt)**:
+
+```powershell
+mvnw.cmd spring-boot:run
+```
+
+4. Open [http://localhost:8080](http://localhost:8080) in your browser
 
 ---
 
@@ -8,17 +42,9 @@
 
 * [Features](#features)
 * [Technologies](#technologies)
-* [Getting Started](#getting-started)
-
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-
-    * [Linux / MacOS](#linux--macos)
-    * [Windows](#windows)
-  * [Database Setup](#database-setup)
-
-    * [Linux (Ubuntu/Debian)](#linux-ubuntudebian)
-    * [Windows](#windows-1)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Database Setup](#database-setup)
 * [Configuration](#configuration)
 * [Usage](#usage)
 * [Contributing](#contributing)
@@ -28,34 +54,38 @@
 
 ## Features
 
-* User Authentication & Authorization
-* CRUD operations for posts (Create, Read, Update, Delete)
-* At least one transaction spanning multiple tables
+* User authentication & authorization
+* CRUD operations for posts
+* Transactional operations spanning multiple tables
 
 ---
 
 ## Technologies
 
-* **Java 21**
-* **Spring Boot 4.0.0**
-* **MariaDB**
-* **Maven**
+| Technology  | Version |
+| ----------- | ------- |
+| Java        | 21      |
+| Spring Boot | 4.0.0   |
+| MariaDB     | 10.11   |
+| Maven       | Latest  |
 
 ---
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
-
-* Java 21 installed
-* Maven installed
-* MariaDB database installed
+| Tool    | Required Version | Installation Notes                               |
+| ------- | ---------------- | ------------------------------------------------ |
+| Java    | 21               | [Download](https://www.oracle.com/java/)         |
+| Maven   | Latest           | [Install](https://maven.apache.org/install.html) |
+| MariaDB | 10+              | [Download](https://mariadb.org/download/)        |
 
 ---
 
-### Installation
+## Installation
 
-#### Linux / MacOS
+Clone the repository and run the application:
+
+* **Linux / MacOS**:
 
 ```bash
 git clone <repository-url>
@@ -63,7 +93,7 @@ cd vox
 ./mvnw spring-boot:run
 ```
 
-#### Windows (PowerShell or Command Prompt)
+* **Windows (PowerShell / CMD)**:
 
 ```powershell
 git clone <repository-url>
@@ -73,35 +103,16 @@ mvnw.cmd spring-boot:run
 
 ---
 
-### Database Setup
+## Database Setup
 
-#### Linux (Ubuntu/Debian)
-
-1. **Install MariaDB**
+### Linux (Ubuntu/Debian)
 
 ```bash
 sudo apt update
 sudo apt install mariadb-server mariadb-client -y
-```
-
-2. **Start and enable MariaDB service**
-
-```bash
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
-```
-
-3. **Secure the installation**
-
-```bash
 sudo mysql_secure_installation
-```
-
-Follow the prompts to set a root password and remove anonymous users.
-
-4. **Create the database and user**
-
-```bash
 sudo mariadb -u root -p
 ```
 
@@ -115,17 +126,11 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-#### Windows
+### Windows
 
-1. **Download and install MariaDB**
-   [MariaDB Official Downloads](https://mariadb.org/download/)
-
-2. **Start MariaDB**
-   Open the **Services** app, locate `MariaDB`, and ensure it is running.
-
-3. **Create the database and user**
-
-Open **MariaDB Command Line Client** or `cmd`:
+1. Download and install MariaDB: [MariaDB Downloads](https://mariadb.org/download/)
+2. Ensure the `MariaDB` service is running
+3. Open **MariaDB Command Line Client** or `cmd`:
 
 ```sql
 CREATE DATABASE freedomwall;
@@ -135,13 +140,11 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-4. **Update application properties** with your database credentials.
-
 ---
 
 ## Configuration
 
-Update `application.properties` or `application.yml` with your database and app settings:
+Set database connection and JPA options in `application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mariadb://localhost:3306/freedomwall
@@ -151,30 +154,25 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-You can also customize other settings like server port or security configurations in the same file.
+Other settings such as server port and security options can also be configured here.
 
 ---
 
 ## Usage
 
-1. Visit the application at [http://localhost:8080](http://localhost:8080)
-2. Register and log in
-3. Create posts
+1. Navigate to [http://localhost:8080](http://localhost:8080)
+2. Register a new account and log in
+3. Create, read, update, or delete posts
 4. Browse posts created by other users
 
-> All interactions are through the web interface; no public API endpoints are exposed.
+> All interactions occur through the web interface; no public API endpoints are provided.
 
 ---
 
 ## Contributing
 
 1. Fork the repository
-2. Create a new branch for your feature/fix
-3. Commit your changes
-4. Submit a pull request
-
----
-
-## License
-
-This project is licensed under the **MIT License**.
+2. Create a new branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m "Add some feature"`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Submit a pull request
