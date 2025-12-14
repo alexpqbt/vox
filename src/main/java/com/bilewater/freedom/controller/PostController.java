@@ -22,8 +22,6 @@ import com.bilewater.freedom.repository.PostRepository;
 import com.bilewater.freedom.repository.UserRepository;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @Controller
 @RequestMapping("/api")
