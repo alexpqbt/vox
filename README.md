@@ -38,7 +38,7 @@ The application will start on the default port `8080` unless otherwise configure
 The application uses `application.properties` (or `application.yml`) to configure database and other settings. At minimum, you will need to set:
 
 ```properties
-spring.datasource.url=jdbc:mariadb://localhost:3306/freedom
+spring.datasource.url=jdbc:mariadb://localhost:3306/freedomwall
 spring.datasource.username=<your-username>
 spring.datasource.password=<your-password>
 spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
