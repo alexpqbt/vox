@@ -41,7 +41,73 @@ cd vox
 mvnw.cmd spring-boot:run
 ```
 
-The application will start on the default port `8080` unless otherwise configured.
+### Database Setup
+
+#### On Linux (Ubuntu/Debian)
+
+1. **Install MariaDB**:
+
+```bash
+sudo apt update
+sudo apt install mariadb-server mariadb-client -y
+```
+
+2. **Start and enable MariaDB service**:
+
+```bash
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+```
+
+3. **Secure MariaDB installation**:
+
+```bash
+sudo mysql_secure_installation
+```
+
+Follow the prompts to set a root password and remove anonymous users.
+
+4. **Create the database and user**:
+
+```bash
+sudo mariadb -u root -p
+```
+
+Inside the MariaDB shell:
+
+```sql
+CREATE DATABASE freedomwall;
+CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON freedomwall.* TO 'your_username'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+#### On Windows
+
+1. **Download MariaDB**:
+   Go to the [MariaDB official downloads page](https://mariadb.org/download/) and download the Windows installer.
+
+2. **Install MariaDB**:
+   Run the installer and follow the steps. Set a root password when prompted.
+
+3. **Start MariaDB**:
+   Open the **Services** app, locate `MariaDB`, and make sure it is running. Alternatively, use `mariadb.exe` from the installation folder.
+
+4. **Create the database and user**:
+   Open the **MariaDB Command Line Client** (or `cmd`) and enter:
+
+```sql
+CREATE DATABASE freedomwall;
+CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON freedomwall.* TO 'your_username'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+After this, update your `application.properties` with the username, password, and database name.
+
+The application will start on `localhost:8080` unless otherwise configured.
 
 ## Configuration
 
