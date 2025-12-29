@@ -40,7 +40,6 @@ mvnw.cmd spring-boot:run
 ## Table of Contents
 
 * [Features](#features)
-* [Technologies](#technologies)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
 * [Database Setup](#database-setup)
