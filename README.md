@@ -59,17 +59,6 @@ mvnw.cmd spring-boot:run
 
 ---
 
-## Technologies
-
-| Technology  | Version |
-| ----------- | ------- |
-| Java        | 21      |
-| Spring Boot | 4.0.0   |
-| MariaDB     | 10.11   |
-| Maven       | Latest  |
-
----
-
 ## Prerequisites
 
 | Tool    | Required Version | Installation Notes                               |
